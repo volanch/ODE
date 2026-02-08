@@ -220,10 +220,38 @@ def plot_solutions(h):
     plt.grid()
     plt.show()
 
+def plot_errors(h):
+    # Get results from each method
+    T1, Y1, YE1, E1 = euler_method(h)
+    T2, Y2, YE2, E2 = modified_euler(h)
+    T3, Y3, YE3, E3 = taylor_method(h)
+    T4, Y4, YE4, E4 = rk3(h)
+    T5, Y5, YE5, E5 = rk4(h)
+    T6, Y6, YE6, E6 = picard_method(h)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(T1, E1, label="Euler")
+    plt.plot(T2, E2, label="Mod Euler")
+    plt.plot(T3, E3, label="Taylor")
+    plt.plot(T4, E4, label="RK3")
+    plt.plot(T5, E5, label="RK4")
+    plt.plot(T6, E6, label="Picard")
+
+    plt.title(f"Error vs x for Step Size h = {h}")
+    plt.xlabel("x")
+    plt.ylabel("Absolute Error")
+    plt.yscale("log")  # Use log scale to emphasize small differences
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+
 run_all_methods(0.1)
 plot_solutions(0.1)
 run_all_methods(0.2)
 plot_solutions(0.2)
+plot_errors(0.1)
+plot_errors(0.2)
 
 # Task 2: SIR Model solved with RK4
 
@@ -405,9 +433,9 @@ plt.show()
 
 # Compare infected curves between scenarios
 plt.figure(figsize=(10, 6))
-plt.plot(T1, I1, label="Infected (Original)")
-plt.plot(T2, I2, label="Infected (Vaccination 50% S0)")
-plt.plot(T3, I3, label="Infected (Social distancing 50% beta)")
+plt.plot(T1, I1, label='Infected (Original)', linestyle='-')
+plt.plot(T2, I2, label='Infected (Vaccination 50% S0)', linestyle='--')
+plt.plot(T3, I3, label='Infected (Social distancing 50% beta)', linestyle=':')
 plt.title("Comparison of Infected I(t) Across Scenarios")
 plt.xlabel("Time (days)")
 plt.ylabel("Infected people")

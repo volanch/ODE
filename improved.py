@@ -183,9 +183,9 @@ plt.show()
 
 # Compare infected curves between scenarios
 plt.figure(figsize=(10, 6))
-plt.plot(T1, I1, label="Infected (Original)")
-plt.plot(T2, I2, label="Infected (Vaccination 50% S0)")
-plt.plot(T3, I3, label="Infected (Social distancing 50% beta)")
+plt.plot(T1, I1, label='Infected (Original)', linestyle='-')
+plt.plot(T2, I2, label='Infected (Vaccination 50% S0)', linestyle='--')
+plt.plot(T3, I3, label='Infected (Social distancing 50% beta)', linestyle=':')
 plt.title("Comparison of Infected I(t) Across Scenarios")
 plt.xlabel("Time (days)")
 plt.ylabel("Infected people")
